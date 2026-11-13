@@ -99,6 +99,6 @@ curl -X POST http://localhost:8000/usuarios \
 ### Descargar la imagen desde Docker Hub
 
 ```bash
-docker pull <usuario-dockerhub>/tienda-online-api:1.0
-docker run --rm -p 8000:8000 <usuario-dockerhub>/tienda-online-api:1.0
+docker pull maurosobrino01/tienda-online-api:1.0
+docker run --rm -p 8000:8000 maurosobrino01/tienda-online-api:1.0
 ```
