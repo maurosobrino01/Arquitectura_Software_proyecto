@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Entornos virtuales
+.venv/
+venv/
+
+# Variables de entorno / secretos
+.env
+
+# macOS
+.DS_Store
+
+# IDE / herramientas
+.idea/
+.vscode/
+.claude/
+CLAUDE.md
