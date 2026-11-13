@@ -42,3 +42,63 @@ Proyecto de la asignatura **Arquitectura del Software** (Prácticas 2 y 3).
 | GET    | `/usuarios/{cliente_id}/pedidos` | Pedidos de un cliente |
 
 
+
+## Docker
+
+### Construir la imagen
+
+Desde la raíz del repositorio:
+
+```bash
+docker build -t tienda-online-api:1.0 .
+```
+
+### Ejecutar el contenedor
+
+```bash
+docker run --rm -p 8000:8000 tienda-online-api:1.0
+```
+
+En segundo plano y con nombre:
+
+```bash
+docker run -d --name tienda -p 8000:8000 tienda-online-api:1.0
+docker logs -f tienda
+docker stop tienda
+```
+
+### Variables de entorno
+
+La aplicación no necesita variables de entorno. El contenedor define
+`PYTHONUNBUFFERED=1` y `PYTHONDONTWRITEBYTECODE=1` para que los logs salgan
+al momento y no se generen ficheros `.pyc`.
+
+### Salida esperada y pruebas
+
+Al arrancar, uvicorn muestra:
+
+```
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+```
+
+- Documentación interactiva: http://localhost:8000/docs
+- Listar productos (al inicio devuelve `[]`):
+
+```bash
+curl http://localhost:8000/productos
+```
+
+- Crear un usuario:
+
+```bash
+curl -X POST http://localhost:8000/usuarios \
+  -H "Content-Type: application/json" \
+  -d '{"nombre": "María López", "email": "maria@email.com", "tipo": "cliente", "direccion": "Calle Rosalía de Castro 10"}'
+```
+
+### Descargar la imagen desde Docker Hub
+
+```bash
+docker pull <usuario-dockerhub>/tienda-online-api:1.0
+docker run --rm -p 8000:8000 <usuario-dockerhub>/tienda-online-api:1.0
+```
